@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 2 - Solution 1</title>
+        <link href="style.css" rel="stylesheet" />
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <h1>Phone Directory</h1>
+        <div class="error">
+            <p id="error"></p>
+        </div>
+        <div class="add">
+            <form onsubmit="add(event)">
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Contact Name"
+                    required
+                />
+                <input
+                    type="text"
+                    id="number"
+                    placeholder="Contact Number"
+                    required
+                />
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Contact Email"
+                    required
+                />
+                <button type="submit">Add Contact</button>
+            </form>
+        </div>
+        <div class="search">
+            <p>Search contact by Mobile No.</p>
+            <input
+                type="text"
+                id="search"
+                placeholder="Search Contact"
+                onkeyup="search()"
+            />
+        </div>
+        <div class="contacts">
+            <table cellspacing="1px" cellpadding="0">
+                <p>Contacts Summary</p>
+                <thead>
+                    <tr>
+                        <th onclick="sort()">Name</th>
+                        <th>Mobile No.</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="contacts">
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

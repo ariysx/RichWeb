@@ -1,0 +1,70 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add form {
+    margin: 20px 0;
+    padding: 2.5em 1em;
+    background: lightblue;
+    border-radius: 1.25rem;
+    border: 3px solid teal;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.add form input {
+    padding: 0.5em;
+    border-radius: 0.5rem;
+    border: 2px solid teal;
+}
+
+.add form button {
+    padding: 0.5em;
+    border-radius: 0.35rem;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.contacts {
+    margin: 20px 0;
+}
+
+.contacts p {
+    font-weight: bold;
+    text-align: center;
+}
+
+.contacts table,
+.contacts table th,
+.contacts table td {
+    outline: 1px solid black;
+}
+
+.contacts table > * > tr > td,
+.contacts table > thead > tr {
+    padding: 0.5em;
+}
+
+.contacts table th {
+    background: white !important;
+}
+
+.contacts table > * > tr:nth-child(odd) {
+    padding: 0.5em;
+    border-radius: 0.5rem;
+    background: #f2f2f2;
+}

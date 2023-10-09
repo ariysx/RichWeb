@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 2 - Solution 3</title>
+        <link href="style.css" rel="stylesheet" />
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="search">
+                <input type="text" id="search" placeholder="Username" />
+                <button type="submit" onclick="search()">Search</button>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4>User Profile</h4>
+                    <div class="details" id="details">
+                        <div class="image">
+                            <img src="" alt="" id="image" />
+                        </div>
+                        <p><strong>Name</strong> <span id="name"></span></p>
+                        <p>
+                            <strong>Username</strong>
+                            <span id="username"></span>
+                        </p>
+                        <p><strong>Email</strong> <span id="email"></span></p>
+                        <p>
+                            <strong>Location</strong>
+                            <span id="location"></span>
+                        </p>
+                        <p>
+                            <strong>Number of Gists</strong>
+                            <span id="gists"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>User Repos</h4>
+                    <div id="repos"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
