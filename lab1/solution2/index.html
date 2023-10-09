@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lab 1</title>
+        <link href="style.css" rel="stylesheet" />
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <h1>Lab 1</h1>
+        <div class="problem">
+            <h2>Problem set 2</h2>
+            <p>
+                Create a simple note taking app, functions: add, edit, delete.
+                each note should have colour selector
+            </p>
+            <div class="input">
+                <input type="text" id="add" placeholder="Enter note" />
+                <button onclick="add()">Add</button>
+                <button onclick="removeAll()">Remove All Todo</button>
+                <button onclick="removeByColour()">Remove All By Colour</button>
+
+                <div class="color">
+                    <input
+                        type="radio"
+                        id="red"
+                        name="color"
+                        value="red"
+                        checked
+                    />
+                    <label for="red">Red</label>
+                    <input type="radio" id="green" name="color" value="green" />
+                    <label for="green">Green</label>
+                    <input type="radio" id="blue" name="color" value="blue" />
+                    <label for="blue">Blue</label>
+                </div>
+
+                <div class="notes"></div>
+            </div>
+        </div>
+    </body>
+</html>
