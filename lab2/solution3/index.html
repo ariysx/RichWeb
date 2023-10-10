@@ -8,8 +8,15 @@
     <body>
         <div class="container">
             <div class="search">
-                <input type="text" id="search" placeholder="Username" />
-                <button type="submit" onclick="search()">Search</button>
+                <form id="searchForm">
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Github Username"
+                        required
+                    />
+                    <button type="submit">Search</button>
+                </form>
             </div>
             <div class="row">
                 <div class="col">

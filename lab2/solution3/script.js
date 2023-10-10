@@ -7,34 +7,45 @@ const image = document.getElementById("image");
 const repository = document.getElementById("repos");
 const details = document.getElementById("details");
 
-const search = () => {
+const search = async (event) => {
+    event.preventDefault();
     const user = document.getElementById("search").value;
-    const result = getUser(user);
-    result.then((data) => {
-        name.innerHTML = data.name;
-        username.innerHTML = data.login;
-        email.innerHTML = data.email;
-        loc.innerHTML = data.location;
-        gists.innerHTML = data.public_gists;
-        image.src = data.avatar_url;
-    });
 
-    const repo = getUserRepo(user);
-    repo.then((data) => {
-        data.forEach((element, index) => {
+    try {
+        const userData = await getUser(user);
+
+        name.innerHTML = userData.name;
+        username.innerHTML = userData.login;
+        email.innerHTML = userData.email;
+        loc.innerHTML = userData.location;
+        gists.innerHTML = userData.public_gists;
+        image.src = userData.avatar_url;
+
+        const repoData = await getUserRepo(user);
+        repository.innerHTML = "";
+        repoData.forEach((element) => {
             const item = document.createElement("div");
             item.className = "repo";
-            item.innerHTML = "<p><strong>Name</strong> " + element.name + "</p>" +
-            "<p><strong>Description</strong> " + element.description + "</p>";
+            item.innerHTML =
+                "<p><strong>Name</strong> " +
+                element.name +
+                "</p>" +
+                "<p><strong>Description</strong> " +
+                element.description +
+                "</p>";
             repository.appendChild(item);
-
-            if(index > 5) {
-                repository.className = "scrollable";
-                repository.style.height = details.offsetHeight + "px";
-            }
         });
-    });
+
+        if (repoData.length > 6) {
+            repository.className = "scrollable";
+            repository.style.height = details.offsetHeight + "px";
+        }
+    } catch (error) {
+        console.log(error);
+    }
 };
+
+document.getElementById("searchForm").addEventListener("submit", search);
 
 const getUser = async (user) => {
     const response = await fetch(`https://api.github.com/users/${user}`);
@@ -48,4 +59,4 @@ const getUserRepo = async (user) => {
     const data = await response.json();
     console.log(data);
     return data;
-}
+};

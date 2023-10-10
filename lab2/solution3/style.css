@@ -8,22 +8,25 @@
     max-width: 1000px;
     margin: auto;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.search {
+.search form {
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 1rem;
 }
 
-.search input {
+.search form input {
     display: inline-block;
     width: 70%;
     padding: 0.5em;
 }
 
-.search button {
+.search form button {
     display: inline-block;
     width: 30%;
     border-radius: 0.25rem;
