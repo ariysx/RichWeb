@@ -28,4 +28,8 @@ const posts = getPosts().then((data) => {
     });
 
     console.log(wordFrequency);
+
+    const output = document.getElementById("output");
+    output.textContent = JSON.stringify(titlesWithMoreThan6Words, undefined, 2);
+    output.textContent += "\n\n" + JSON.stringify(wordFrequency, undefined, 2);
 });

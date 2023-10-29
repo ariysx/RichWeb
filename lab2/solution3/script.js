@@ -12,36 +12,40 @@ const search = async (event) => {
     const user = document.getElementById("search").value;
 
     try {
-        const userData = await getUser(user);
+        Promise.all([getUser(user), getUserRepo(user)]).then((values) => {
+            const userData = values[0];
+            const repoData = values[1];
 
-        name.innerHTML = userData.name;
-        username.innerHTML = userData.login;
-        email.innerHTML = userData.email;
-        loc.innerHTML = userData.location;
-        gists.innerHTML = userData.public_gists;
-        image.src = userData.avatar_url;
+            name.innerHTML = userData.name;
+            username.innerHTML = userData.login;
+            email.innerHTML = userData.email;
+            loc.innerHTML = userData.location;
+            gists.innerHTML = userData.public_gists;
+            image.src = userData.avatar_url;
 
-        const repoData = await getUserRepo(user);
-        repository.innerHTML = "";
-        repoData.forEach((element) => {
-            const item = document.createElement("div");
-            item.className = "repo";
-            item.innerHTML =
-                "<p><strong>Name</strong> " +
-                element.name +
-                "</p>" +
-                "<p><strong>Description</strong> " +
-                element.description +
-                "</p>";
-            repository.appendChild(item);
-        });
+            repository.innerHTML = "";
+            repoData.forEach((element) => {
+                const item = document.createElement("div");
+                item.className = "repo";
+                item.innerHTML =
+                    "<p><strong>Name</strong> " +
+                    element.name +
+                    "</p>" +
+                    "<p><strong>Description</strong> " +
+                    element.description +
+                    "</p>";
+                repository.appendChild(item);
+            });
 
-        if (repoData.length > 6) {
-            repository.className = "scrollable";
-            repository.style.height = details.offsetHeight + "px";
+            if (repoData.length > 6) {
+                repository.className = "scrollable";
+                repository.style.height = details.offsetHeight + "px";
+            }
         }
+        );
     } catch (error) {
         console.log(error);
+        
     }
 };
 
