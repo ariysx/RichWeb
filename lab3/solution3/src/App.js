@@ -6,16 +6,20 @@ function App() {
   const [notes, setNotes] = React.useState([]);
   const inputRef = useRef(null);
   const subscriptions = useRef([]);
+  const [editing, setEditing] = React.useState(0);
 
   useEffect(() => {
     const addButton = document.getElementById('addButton');
     const removeAllButton = document.getElementById('removeAll');
     const removeByColourButton = document.getElementById('removeByColour');
-    const removeButton = document.getElementById('removeButton');
+    const removeButtons = document.querySelectorAll('.removeButton');
+    const editButtons = document.querySelectorAll('.editButton');
+    const saveButtons = document.querySelectorAll('.saveButton');
 
     const addButtonClick$ = fromEvent(addButton, 'click');
     const removeAllButtonClick$ = fromEvent(removeAllButton, 'click');
     const removeByColourButtonClick$ = fromEvent(removeByColourButton, 'click');
+
 
     const addButtonSubscription = addButtonClick$.subscribe(() => {
       const note = {
@@ -38,8 +42,29 @@ function App() {
       setNotes(notes.filter(note => note.color !== color));
     });
 
-    const removeSubscription = fromEvent(removeButton, 'click').subscribe(() => {
-      const noteId = parseInt(prompt('Enter note id to remove'));
+    const removeSubscription = fromEvent(removeButtons, 'click').subscribe((event) => {
+      const noteId = parseInt(event.target.id);
+
+      if (isNaN(noteId)) {
+        alert('Invalid id');
+        return;
+      }
+
+      const note = notes.find(note => note.id === noteId);
+
+      if (!note) {
+        alert('Note not found');
+        return;
+      }
+      setNotes(notes.filter(note => note.id !== noteId && note.parent !== noteId));
+    });
+
+    const editSubscription = fromEvent(editButtons, 'click').subscribe((event) => {
+      
+    });
+
+    const saveSubscription = fromEvent(saveButtons, 'click').subscribe((event) => {
+      const noteId = parseInt(event.target.id);
 
       if (isNaN(noteId)) {
         alert('Invalid id');
@@ -53,13 +78,29 @@ function App() {
         return;
       }
 
-      // remove note and all children
-      const removeNoteAndChildren = (note) => {
-        setNotes(notes.filter(n => n.id !== note.id));
-        notes.filter(n => n.parent === note.id).forEach(removeNoteAndChildren);
-      };
+      const text = document.getElementById('text');
+      const parent = parseInt(document.getElementById('parent'));
+      const color = document.getElementById('color');
 
-      removeNoteAndChildren(note);
+      if (!text || !parent || !color) {
+        return;
+      }
+
+      const newNotes = notes.map(note => {
+        if (note.id === noteId) {
+          return {
+            id: noteId,
+            text: text.value,
+            parent: parent.value,
+            color: color.value,
+          };
+        }
+
+        return note;
+      });
+
+      setNotes(newNotes);
+      setEditing(null);
     });
 
     subscriptions.current = [
@@ -67,6 +108,8 @@ function App() {
       removeAllSubscription,
       removeByColourSubscription,
       removeSubscription,
+      editSubscription,
+      saveSubscription,
     ];
 
     return () => {
@@ -93,10 +136,6 @@ function App() {
         <button id="addButton">Add</button>
         <button id="removeAll">Remove All Todo</button>
         <button id="removeByColour">Remove All By Colour</button>
-          <button id="removeButton">
-            Remove
-          </button>
-
         <div className="color">
           <input
             type="radio"
@@ -146,6 +185,14 @@ function App() {
             <br />
             {JSON.stringify(note)}
           </div>
+            <div>
+            <button id={note.id} className="removeButton">
+              Remove
+            </button>
+            <button id={note.id} className="editButton">
+              Edit
+            </button>
+            </div>
           </div>
         ))}
       </div>

@@ -11,8 +11,6 @@ function App() {
     const addButton = document.getElementById('addButton');
     const removeAllButton = document.getElementById('removeAll');
     const removeByColourButton = document.getElementById('removeByColour');
-    const editButtons = document.querySelectorAll('.editButton');
-    const removeButtons = document.querySelectorAll('.removeButton');
 
     const addButtonClick$ = fromEvent(addButton, 'click');
     const removeAllButtonClick$ = fromEvent(removeAllButton, 'click');
@@ -38,64 +36,10 @@ function App() {
       setNotes(notes.filter(note => note.color !== color));
     });
 
-    const removeSubscription = fromEvent(removeButtons, 'click').subscribe((event) => {
-      const noteId = parseInt(event.target.id);
-
-      if (isNaN(noteId)) {
-        alert('Invalid id');
-        return;
-      }
-
-      const note = notes.find(note => note.id === noteId);
-
-      if (!note) {
-        alert('Note not found');
-        return;
-      }
-      setNotes(notes.filter(note => note.id !== noteId && note.parent !== noteId));
-    });
-
-
-    const editSubscription = fromEvent(editButtons, 'click').subscribe((event) => {
-      const noteId = parseInt(event.target.id);
-
-      if (isNaN(noteId)) {
-        alert('Invalid id');
-        return;
-      }
-
-      const note = notes.find(note => note.id === noteId);
-
-      if (!note) {
-        alert('Note not found');
-        return;
-      }
-
-      const newText = prompt('Enter new text', note.text);
-
-      if (!newText) {
-        alert('Invalid text');
-        return;
-      }
-
-      setNotes(notes.map(note => {
-        if (note.id === noteId) {
-          return {
-            ...note,
-            text: newText,
-          };
-        }
-
-        return note;
-      }));
-    });
-
     subscriptions.current = [
       addButtonSubscription,
       removeAllSubscription,
       removeByColourSubscription,
-      removeSubscription,
-      editSubscription,
     ];
 
     return () => {
@@ -119,6 +63,8 @@ function App() {
         <button id="addButton">Add</button>
         <button id="removeAll">Remove All Todo</button>
         <button id="removeByColour">Remove All By Colour</button>
+        <button id="removeButton">Delete</button>
+        <button id="editButton">Edit</button>
 
         <div className="color">
           <input
@@ -152,8 +98,6 @@ function App() {
             style={{ backgroundColor: note.color }}
           >
             {note.text}
-            <button id={note.id} className="removeButton">Delete</button>
-            <button id={note.id} className="editButton">Edit</button>
           </div>
         ))}
       </div>

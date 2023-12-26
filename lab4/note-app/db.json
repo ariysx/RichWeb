@@ -1,0 +1,104 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "content": "Create a login page",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "content": "How to parse or read CSV files in ReactJS!",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "content": "Implement a data fetching mechanism",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "content": "Design a dashboard layout",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "content": "Refactor existing components",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "content": "Write unit tests for API functions",
+      "completed": false
+    },
+    {
+      "id": 7,
+      "content": "Optimize application performance",
+      "completed": false
+    },
+    {
+      "id": 8,
+      "content": "Create user profile settings",
+      "completed": false
+    },
+    {
+      "id": 9,
+      "content": "Implement responsive design",
+      "completed": false
+    },
+    {
+      "id": 10,
+      "content": "Fix accessibility issues",
+      "completed": false
+    },
+    {
+      "id": 11,
+      "content": "Set up Redux for state management",
+      "completed": false
+    },
+    {
+      "id": 12,
+      "content": "Integrate third-party authentication",
+      "completed": false
+    },
+    {
+      "id": 13,
+      "content": "Create a form validation system",
+      "completed": false
+    },
+    {
+      "id": 14,
+      "content": "Write documentation for components",
+      "completed": false
+    },
+    {
+      "id": 15,
+      "content": "Implement lazy loading for images",
+      "completed": false
+    },
+    {
+      "id": 16,
+      "content": "Design an onboarding process",
+      "completed": false
+    },
+    {
+      "id": 17,
+      "content": "Fix cross-browser compatibility issues",
+      "completed": false
+    },
+    {
+      "id": 18,
+      "content": "Create reusable utility functions",
+      "completed": false
+    },
+    {
+      "id": 19,
+      "content": "Implement a notification system",
+      "completed": false
+    },
+    {
+      "id": 20,
+      "content": "Set up internationalization (i18n)",
+      "completed": false
+    }
+  ]
+}
